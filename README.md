@@ -9,6 +9,8 @@ CMSScanner | Checking Site CMS, Plugins, Component, Extensions, Modules, Themes 
  - Prestashop
  - Drupal
  - Laravel
+ - CodeIgniter
+ - DebugBar
  - Open Journal Systems
  - PopojiCMS
  - Keenthemes

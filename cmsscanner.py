@@ -88,6 +88,8 @@ def exploit(url):
             open('cms_popoji.txt', 'a').write(url +'\n')
         elif 'Keenthemes' in check.text:
             open('cms_keenthemes.txt', 'a').write(url +'\n')
+        elif 'Keenthemes' in check.text:
+            open('cms_keenthemes.txt', 'a').write(url +'\n')
         elif "sekolahku.web.id" in check.text or "cmssekolahku" in check.text:
             open('cms_sekolahku.txt', 'a').write(url +'\n')
         elif "OpenSID" in check.text or "OpenDesa" in check.text:
@@ -116,6 +118,14 @@ def exploit(url):
             open('cms_chamilo.txt', 'a').write(url +'\n')
         elif 'XSRF-TOKEN' in check.cookies or 'laravel_session' in check.cookies:
             open('cms_laravel.txt', 'a').write(url +'\n')
+            if 'debugbar' in check:
+                open('cms_debugbar.txt', 'a').write(url +'\n')
+            else:pass
+        elif 'ci_session' in check.cookies:
+            open('cms_codeigniter.txt', 'a').write(url +'\n')
+            if 'debugbar' in check:
+                open('cms_debugbar.txt', 'a').write(url +'\n')
+            else:pass
         else:
             open('cms_other.txt', 'a').write(url +'\n')
     except Exception as err:
