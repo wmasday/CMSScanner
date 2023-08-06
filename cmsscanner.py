@@ -126,6 +126,9 @@ def exploit(url):
             if 'debugbar' in check:
                 open('cms_debugbar.txt', 'a').write(url +'\n')
             else:pass
+        elif 'Open Monograph Press' in check.text:
+            # Access : /files/presses/1/monographs/
+            open('cms_monographpress.txt', 'a').write(url +'\n')
         else:
             open('cms_other.txt', 'a').write(url +'\n')
     except Exception as err:

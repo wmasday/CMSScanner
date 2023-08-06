@@ -23,6 +23,7 @@ CMSScanner | Checking Site CMS, Plugins, Component, Extensions, Modules, Themes 
  - Chamilo
  - Index Of (Dirlisting On Index)
  - PHP Params `.php?`
+ - Open Monograph Press
  - Other CMS
 
 
