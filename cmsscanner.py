@@ -110,10 +110,6 @@ def exploit(url):
             open('cms_openjournalsystem.txt', 'a').write(url +'\n')
         elif "vBulletin" in check.text or 'vbulletin' in check.text:
             open('cms_vbulletin.txt', 'a').write(url +'\n')
-        elif ".php?" in check.text:
-            open('cms_foundparams.txt', 'a').write(url +'\n')   
-        elif "Index of" in check.text:
-            open('cms_indexof.txt', 'a').write(url +'\n')
         elif "Chamilo" in check.text or 'chamilo' in check.text:
             open('cms_chamilo.txt', 'a').write(url +'\n')
         elif 'XSRF-TOKEN' in check.cookies or 'laravel_session' in check.cookies:
@@ -129,8 +125,15 @@ def exploit(url):
         elif 'Open Monograph Press' in check.text:
             # Access : /files/presses/1/monographs/
             open('cms_monographpress.txt', 'a').write(url +'\n')
+        elif "Index of" in check.text:
+            open('cms_indexof.txt', 'a').write(url +'\n')
         else:
+            if ".php?" in check.text:
+                open('cms_foundparams.txt', 'a').write(url +'\n')
+            else:pass
+            
             open('cms_other.txt', 'a').write(url +'\n')
+            
     except Exception as err:
         print ('[!] Errors : '+ url)
         open('cms_errors.txt', 'a').write(url +'\n')
