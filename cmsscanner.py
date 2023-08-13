@@ -160,7 +160,7 @@ def init():
     elif '--file=' in command:
         sitelist = command.replace('--file=', '')
         try:
-            open(sitelist, 'r').read()
+            open(sitelist, 'r', encoding='utf8').read()
         except:
             print ('[!] Sitelist Not Found')
             return sys.exit()
