@@ -114,22 +114,24 @@ def exploit(url):
             open('cms_chamilo.txt', 'a').write(url +'\n')
         elif 'XSRF-TOKEN' in check.cookies or 'laravel_session' in check.cookies:
             open('cms_laravel.txt', 'a').write(url +'\n')
-            if 'debugbar' in check:
+            if 'debugbar' in check.text:
                 open('cms_debugbar.txt', 'a').write(url +'\n')
             else:pass
         elif 'ci_session' in check.cookies:
             open('cms_codeigniter.txt', 'a').write(url +'\n')
-            if 'debugbar' in check:
+            if 'debugbar' in check.text:
                 open('cms_debugbar.txt', 'a').write(url +'\n')
             else:pass
         elif 'Open Monograph Press' in check.text:
             # Access : /files/presses/1/monographs/
             open('cms_monographpress.txt', 'a').write(url +'\n')
-        elif "Index of" in check.text:
-            open('cms_indexof.txt', 'a').write(url +'\n')
         else:
             if ".php?" in check.text:
                 open('cms_foundparams.txt', 'a').write(url +'\n')
+            else:pass
+            
+            if "Index of" in check.text:
+                open('cms_indexof.txt', 'a').write(url +'\n')
             else:pass
             
             open('cms_other.txt', 'a').write(url +'\n')
