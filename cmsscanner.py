@@ -117,6 +117,11 @@ def exploit(url):
             if 'debugbar' in check.text:
                 open('cms_debugbar.txt', 'a').write(url +'\n')
             else:pass
+            
+            if 'filemanager/' in check.text or 'laravel-filemanager/' in check.text:
+                open('cms_laravelfm.txt', 'a').write(url +'\n')
+            else:pass
+            
         elif 'ci_session' in check.cookies:
             open('cms_codeigniter.txt', 'a').write(url +'\n')
             if 'debugbar' in check.text:
