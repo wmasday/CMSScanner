@@ -81,39 +81,55 @@ def exploit(url):
         if 'wp-content' in check.text or 'wp-includes' in check.text:
             open('cms_wordpress.txt', 'a').write(url +'\n')
             findPluginTheme(url, check.text)
+            
         elif 'joomla' in check.text or 'Joomla' in check.text:
             open('cms_joomla.txt', 'a').write(url +'\n')
             findPluginTheme(url, check.text)
+            
         elif 'po-includes' in check.text or 'po-content' in check.text:
             open('cms_popoji.txt', 'a').write(url +'\n')
+            
         elif 'Keenthemes' in check.text:
             open('cms_keenthemes.txt', 'a').write(url +'\n')
+            
         elif 'Keenthemes' in check.text:
             open('cms_keenthemes.txt', 'a').write(url +'\n')
         elif "sekolahku.web.id" in check.text or "cmssekolahku" in check.text:
             open('cms_sekolahku.txt', 'a').write(url +'\n')
+            
         elif "OpenSID" in check.text or "OpenDesa" in check.text:
             open('cms_opensid.txt', 'a').write(url +'\n')
+            
         elif "drupal" in check.text or "Drupal" in check.text:
             open('cms_drupal.txt', 'a').write(url +'\n')
+            
         elif "prestashop" in check.text or "PrestaShop" in check.text:
             open('cms_prestashop.txt', 'a').write(url +'\n')
+            
         elif "OpenCart" in check.text or "opencart" in check.text:
             open('cms_opencart.txt', 'a').write(url +'\n')
+            
         elif "Balitbang" in check.text or "balitbang" in check.text:
             open('cms_balitbang.txt', 'a').write(url +'\n')
+            
         elif "X-Candy CBT" in check.text:
             open('cms_xcandycbt.txt', 'a').write(url +'\n')
+            
         elif "Computer Assisted Test" in check.text:
             open('cms_computerasisted.txt', 'a').write(url +'\n')
+            
         elif "Open Journal Systems" in check.text:
             open('cms_openjournalsystem.txt', 'a').write(url +'\n')
+            
         elif "vBulletin" in check.text or 'vbulletin' in check.text:
             open('cms_vbulletin.txt', 'a').write(url +'\n')
+            
         elif "Chamilo" in check.text or 'chamilo' in check.text:
             open('cms_chamilo.txt', 'a').write(url +'\n')
+            
         elif 'XSRF-TOKEN' in check.cookies or 'laravel_session' in check.cookies:
             open('cms_laravel.txt', 'a').write(url +'\n')
+            
             if 'debugbar' in check.text:
                 open('cms_debugbar.txt', 'a').write(url +'\n')
             else:pass
@@ -127,10 +143,16 @@ def exploit(url):
             if 'debugbar' in check.text:
                 open('cms_debugbar.txt', 'a').write(url +'\n')
             else:pass
+            
         elif 'Open Monograph Press' in check.text:
             # Access : /files/presses/1/monographs/
             open('cms_monographpress.txt', 'a').write(url +'\n')
+        
         else:
+            if "There isn't a GitHub Pages site here." in check.text and check.status_code == 404:
+                open('cms_github.txt', 'a').write(url +'\n')
+            else:pass
+            
             if ".php?" in check.text:
                 open('cms_foundparams.txt', 'a').write(url +'\n')
             else:pass
