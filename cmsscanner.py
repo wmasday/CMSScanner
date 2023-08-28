@@ -147,12 +147,14 @@ def exploit(url):
         elif 'Open Monograph Press' in check.text:
             # Access : /files/presses/1/monographs/
             open('cms_monographpress.txt', 'a').write(url +'\n')
-        
-        else:
-            if "There isn't a GitHub Pages site here." in check.text and check.status_code == 404:
-                open('cms_github.txt', 'a').write(url +'\n')
-            else:pass
             
+        elif 'weebly' in check.text:
+            open('cms_weebly.txt', 'a').write(url +'\n')
+        
+        elif "There isn't a GitHub Pages site here." in check.text and check.status_code == 404:
+                open('cms_github.txt', 'a').write(url +'\n')
+
+        else:
             if ".php?" in check.text:
                 open('cms_foundparams.txt', 'a').write(url +'\n')
             else:pass
@@ -200,7 +202,6 @@ def init():
             thread = 25
     
         try:
-            print (thread)
             sites = open(sitelist, "r", encoding='utf8').read().splitlines()
             try:
                 pp = Pool(int(thread))
