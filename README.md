@@ -33,7 +33,7 @@ CMSScanner | Checking Site CMS, Plugins, Component, Extensions, Modules, Themes 
 
 ## Usage
 
-Run CMSScanner with python3
+Run CMSScanner with python3, and setting up `config.json`
 
 ```bash
   cmsscanner.py --target=site.com

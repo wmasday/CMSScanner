@@ -1,10 +1,14 @@
+# Open Monograph Press Access : /files/presses/1/monographs/
 from fake_useragent import UserAgent
 import requests
 import re
-import sys
+import sys, json
 from multiprocessing.dummy import Pool
 from urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+
+config = open('config.json')
+exploiter = json.load(config)
 
 confDebug = False
 confVerify = True
@@ -13,15 +17,16 @@ confTimeout = 15
 confPayload = ''
 
 help = '''
-[!] python3 cmsscanner.py --target=site.com
-[!] python3 cmsscanner.py --file=list.txt
-[!] python3 cmsscanner.py --file=list.txt --thread=30
+use --target=site.com
+use --file=list.txt
+use --file=list.txt --thread=30
         
-        --help HELP
-        --target Scan Single URL
-        --file Scan From File
-            --thread Multiproccess Thread
+    --help HELP
+    --target Scan Single URL
+    --file Scan From File
+        --thread Multiproccess Thread
 '''
+
 def debug(url, err):
     if confDebug == True:
         if 'ConnectTimeout' in err:
@@ -78,92 +83,62 @@ def exploit(url):
     try:
         print (f'[!] [ CMS ] Check : {url}')
         check = requests.get(url, headers=confHeaders, timeout=confTimeout, allow_redirects=confAllowRedirect)
-        if 'wp-content' in check.text or 'wp-includes' in check.text:
-            open('cms_wordpress.txt', 'a').write(url +'\n')
-            findPluginTheme(url, check.text)
-            
-        elif 'joomla' in check.text or 'Joomla' in check.text:
-            open('cms_joomla.txt', 'a').write(url +'\n')
-            findPluginTheme(url, check.text)
-            
-        elif 'po-includes' in check.text or 'po-content' in check.text:
-            open('cms_popoji.txt', 'a').write(url +'\n')
-            
-        elif 'Keenthemes' in check.text:
-            open('cms_keenthemes.txt', 'a').write(url +'\n')
-            
-        elif 'Keenthemes' in check.text:
-            open('cms_keenthemes.txt', 'a').write(url +'\n')
-        elif "sekolahku.web.id" in check.text or "cmssekolahku" in check.text:
-            open('cms_sekolahku.txt', 'a').write(url +'\n')
-            
-        elif "OpenSID" in check.text or "OpenDesa" in check.text:
-            open('cms_opensid.txt', 'a').write(url +'\n')
-            
-        elif "drupal" in check.text or "Drupal" in check.text:
-            open('cms_drupal.txt', 'a').write(url +'\n')
-            
-        elif "prestashop" in check.text or "PrestaShop" in check.text:
-            open('cms_prestashop.txt', 'a').write(url +'\n')
-            
-        elif "OpenCart" in check.text or "opencart" in check.text:
-            open('cms_opencart.txt', 'a').write(url +'\n')
-            
-        elif "Balitbang" in check.text or "balitbang" in check.text:
-            open('cms_balitbang.txt', 'a').write(url +'\n')
-            
-        elif "X-Candy CBT" in check.text:
-            open('cms_xcandycbt.txt', 'a').write(url +'\n')
-            
-        elif "Computer Assisted Test" in check.text:
-            open('cms_computerasisted.txt', 'a').write(url +'\n')
-            
-        elif "Open Journal Systems" in check.text:
-            open('cms_openjournalsystem.txt', 'a').write(url +'\n')
-            
-        elif "vBulletin" in check.text or 'vbulletin' in check.text:
-            open('cms_vbulletin.txt', 'a').write(url +'\n')
-            
-        elif "Chamilo" in check.text or 'chamilo' in check.text:
-            open('cms_chamilo.txt', 'a').write(url +'\n')
-            
-        elif 'XSRF-TOKEN' in check.cookies or 'laravel_session' in check.cookies:
-            open('cms_laravel.txt', 'a').write(url +'\n')
-            
-            if 'debugbar' in check.text:
-                open('cms_debugbar.txt', 'a').write(url +'\n')
-            else:pass
-            
-            if 'filemanager/' in check.text or 'laravel-filemanager/' in check.text:
-                open('cms_laravelfm.txt', 'a').write(url +'\n')
-            else:pass
-            
-        elif 'ci_session' in check.cookies:
-            open('cms_codeigniter.txt', 'a').write(url +'\n')
-            if 'debugbar' in check.text:
-                open('cms_debugbar.txt', 'a').write(url +'\n')
-            else:pass
-            
-        elif 'Open Monograph Press' in check.text:
-            # Access : /files/presses/1/monographs/
-            open('cms_monographpress.txt', 'a').write(url +'\n')
-            
-        elif 'weebly' in check.text:
-            open('cms_weebly.txt', 'a').write(url +'\n')
         
-        elif "There isn't a GitHub Pages site here." in check.text and check.status_code == 404:
-                open('cms_github.txt', 'a').write(url +'\n')
-
-        else:
-            if ".php?" in check.text:
-                open('cms_foundparams.txt', 'a').write(url +'\n')
-            else:pass
+        for conf in exploiter:
+            name = conf['name']
+            output = conf['output']
             
-            if "Index of" in check.text:
-                open('cms_indexof.txt', 'a').write(url +'\n')
-            else:pass
+            for flag in conf['flag']:
+                flagCode = flag['code']
+                flagCookies = flag['cookies']
+                flagText = flag['text']
+                flagHeaders = flag['headers']
+                flagValue = flag['value']
+                
+                if flagText == True:
+                    if flagValue in check.text:
+                        open(output, 'a').write(url +'\n')
+                        
+                        if name == 'Wordpress' or name == 'Joomla':
+                            findPluginTheme(url, check.text)
+                        else:pass
+                        
+                        return True
+                    else:pass
+                else:pass
+                
+                if flagCode == True:
+                    if flagValue in check.status_code:
+                        open(output, 'a').write(url +'\n')
+                        return True
+                    else:pass
+                else:pass
+                
+                if flagCookies == True:
+                    if flagValue in check.cookies:
+                        open(output, 'a').write(url +'\n')
+                        return True
+                    else:pass
+                else:pass
+                
+                if flagHeaders == True:
+                    if flagValue in check.headers:
+                        open(output, 'a').write(url +'\n')
+                        return True
+                    else:pass
+                else:pass
+        
+        # Consist Response
+        if ".php?" in check.text:
+            open('cms_foundparams.txt', 'a').write(url +'\n')
+        else:pass
             
-            open('cms_other.txt', 'a').write(url +'\n')
+        if "Index of" in check.text:
+            open('cms_indexof.txt', 'a').write(url +'\n')
+        else:pass
+            
+        open('cms_other.txt', 'a').write(url +'\n')
+            
             
     except Exception as err:
         print ('[!] Errors : '+ url)
@@ -212,5 +187,6 @@ def init():
         except:
             print("[!] Sitelist not found!")
             return sys.exit()
+
 
 init()

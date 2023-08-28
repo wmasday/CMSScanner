@@ -1,0 +1,392 @@
+[
+    {
+        "name": "Wordpress",
+        "output": "cms_wordpress.txt",
+        "flag": [
+            {
+                "value": "wp-content",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "wp-includes",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Joomla",
+        "output": "cms_joomla.txt",
+        "flag": [
+            {
+                "value": "joomla",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "Joomla",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Popoji",
+        "output": "cms_popoji.txt",
+        "flag": [
+            {
+                "value": "po-includes",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "po-content",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Keenthemes",
+        "output": "cms_keenthemes.txt",
+        "flag": [
+            {
+                "value": "Keenthemes",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Sekolahku.web.id",
+        "output": "cms_sekolahku.txt",
+        "flag": [
+            {
+                "value": "sekolahku.web.id",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "cmssekolahku",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "OpenSID",
+        "output": "cms_opensid.txt",
+        "flag": [
+            {
+                "value": "OpenSID",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "OpenDesa",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Drupal",
+        "output": "cms_drupal.txt",
+        "flag": [
+            {
+                "value": "Drupal",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "drupal",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "PrestaShop",
+        "output": "cms_prestashop.txt",
+        "flag": [
+            {
+                "value": "PrestaShop",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "prestashop",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "OpenCart",
+        "output": "cms_opencart.txt",
+        "flag": [
+            {
+                "value": "OpenCart",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "opencart",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Balitbang",
+        "output": "cms_balitbang.txt",
+        "flag": [
+            {
+                "value": "Balitbang",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "balitbang",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "X-Candy CBT",
+        "output": "cms_xcandycbt.txt",
+        "flag": [
+            {
+                "value": "X-Candy CBT",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Computer Assisted Test",
+        "output": "cms_computerasisted.txt",
+        "flag": [
+            {
+                "value": "Computer Assisted Test",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Open Journal Systems",
+        "output": "cms_openjournalsystem.txt",
+        "flag": [
+            {
+                "value": "Open Journal Systems",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "vBulletin",
+        "output": "cms_vbulletin.txt",
+        "flag": [
+            {
+                "value": "vBulletin",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "vbulletin",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Chamilo",
+        "output": "cms_chamilo.txt",
+        "flag": [
+            {
+                "value": "Chamilo",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "chamilo",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Laravel",
+        "output": "cms_laravel.txt",
+        "flag": [
+            {
+                "value": "XSRF-TOKEN",
+                "text": false,
+                "headers": false,
+                "cookies": true,
+                "code": false
+            },
+            {
+                "value": "laravel_session",
+                "text": false,
+                "headers": false,
+                "cookies": true,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Debug Bar",
+        "output": "cms_debugbar.txt",
+        "flag": [
+            {
+                "value": "debugbar",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Laravel Filemanager",
+        "output": "cms_laravelfm.txt",
+        "flag": [
+            {
+                "value": "filemanager/",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            },
+            {
+                "value": "laravel-filemanager/",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "CodeIgniter",
+        "output": "cms_codeigniter.txt",
+        "flag": [
+            {
+                "value": "ci_session",
+                "text": false,
+                "headers": false,
+                "cookies": true,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Open Monograph Press",
+        "output": "cms_monographpress.txt",
+        "flag": [
+            {
+                "value": "Open Monograph Press",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Weebly",
+        "output": "cms_weebly.txt",
+        "flag": [
+            {
+                "value": "weebly",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Github",
+        "output": "cms_github.txt",
+        "flag": [
+            {
+                "value": "There isn't a GitHub Pages site here.",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Github",
+        "output": "cms_github.txt",
+        "flag": [
+            {
+                "value": "There isn't a GitHub Pages site here.",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    }
+]
