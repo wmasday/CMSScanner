@@ -1,6 +1,9 @@
+<p align="center">
 # CMSScanner
 
 CMSScanner | Checking Site CMS, Plugins, Component, Extensions, Modules, Themes | Python
+
+</p>
 
 ### Find CMS
 
