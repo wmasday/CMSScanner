@@ -33,9 +33,9 @@ CMSScanner | Checking Site CMS, Plugins, Component, Extensions, Modules, Themes 
 Run CMSScanner with python3
 
 ```bash
-  [!] python3 cmsscanner.py --target=site.com
-  [!] python3 cmsscanner.py --file=list.txt
-  [!] python3 cmsscanner.py --file=list.txt --thread=30
+  cmsscanner.py --target=site.com
+  cmsscanner.py --file=list.txt
+  cmsscanner.py --file=list.txt --thread=30
 
         --help HELP
         --target Scan Single URL
