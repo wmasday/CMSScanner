@@ -36,12 +36,13 @@ CMSScanner | Checking Site CMS, Plugins, Component, Extensions, Modules, Themes 
 Run CMSScanner with python3, and setting up `config.json`
 
 ```bash
-  cmsscanner.py --target=site.com
-  cmsscanner.py --file=list.txt
-  cmsscanner.py --file=list.txt --thread=30
+Params Helpers
+---
 
-        --help HELP
-        --target Scan Single URL
-        --file Scan From File
-            --thread Multiproccess Thread
+options:
+  -h   or  --help       :  show this help message and exit
+  -u   or  --url        :  scan with single url (eg: http://target.com/) (default: None)
+  -l   or  --list       :  scan with mass url list (default: None)
+  -t   or  --thread     :  multithread proccess (default: None)
+  -m   or   --method    :  method requests or scrapper (bypassing cloudflare) (default: None)
 ```

