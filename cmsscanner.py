@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# Open Monograph Press Access : /files/presses/1/monographs/
 from fake_useragent import UserAgent
 import requests, re, sys, json, argparse, cloudscraper
 from multiprocessing.dummy import Pool
@@ -22,10 +20,10 @@ Params Helpers
 
 options:
   -h   or  --help       :  show this help message and exit
-  -u   or  --url        :  scan with single url (eg: http://target.com/) (default: None)
-  -l   or  --list       :  scan with mass url list (default: None)
-  -t   or  --thread     :  multithread proccess (default: None)
-  -m   or   --method    :  method requests or scrapper (bypassing cloudflare) (default: None)
+  -u   or  --url        :  scan with single url (eg: http://target.com/)
+  -l   or  --list       :  scan with mass url list
+  -t   or  --thread     :  multithread proccess
+  -m   or   --method    :  method requests or scrapper (bypassing cloudflare)
 '''
 
 def debug(url, err):
@@ -36,7 +34,8 @@ def debug(url, err):
             open('cms_ConnectionError.log', 'a').write(f'[ERR] {url} : {err}\n')
         else:
             open('cms_dbug.log', 'a').write(f'[ERR] {url} : {err}\n')
-    else:pass
+    else:
+        open('cms_errors.txt', 'a').write(url +'\n')
        
 
 def findPluginTheme(url, response):
@@ -148,9 +147,9 @@ def exploit(url):
             
             
     except Exception as err:
-        print ('[!] Errors : '+ url)
-        open('cms_errors.txt', 'a').write(url +'\n')
+        print (f'[!] [ CMS ] Error : {url}')
         debug(url, str(err))
+        pass
         
      
 def init():

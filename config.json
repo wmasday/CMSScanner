@@ -388,5 +388,18 @@
                 "code": false
             }
         ]
+    },
+    {
+        "name": "PlaySMS",
+        "output": "cms_playsms.txt",
+        "flag": [
+            {
+                "value": "playsms",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
     }
 ]
