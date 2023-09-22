@@ -30,6 +30,7 @@ CMSScanner | Checking Site CMS, Plugins, Component, Extensions, Modules, Themes 
 | X-Candy CBT            | -                                                   |
 | vBulletin              | -                                                   |
 | PlaySMS                | `RCE`                                               |
+| Vendor DIR             | `-`                                                 |
 | Other CMS              | `Find Refrence`                                     |
 
 ## Usage

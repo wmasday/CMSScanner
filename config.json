@@ -401,5 +401,18 @@
                 "code": false
             }
         ]
+    },
+    {
+        "name": "Vendor DIR",
+        "output": "cms_vendor.txt",
+        "flag": [
+            {
+                "value": "vendor",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
     }
 ]
