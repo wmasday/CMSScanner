@@ -414,5 +414,31 @@
                 "code": false
             }
         ]
+    },
+    {
+        "name": "Shopify",
+        "output": "cms_shopify.txt",
+        "flag": [
+            {
+                "value": "shopify",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
+    },
+    {
+        "name": "Shopify TakeOver",
+        "output": "cms_shopify_takeover.txt",
+        "flag": [
+            {
+                "value": "Only one step left!",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
     }
 ]
