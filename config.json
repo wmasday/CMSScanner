@@ -440,5 +440,18 @@
                 "code": false
             }
         ]
+    },
+    {
+        "name": "Rocket LMS",
+        "output": "cms_rocketlms.txt",
+        "flag": [
+            {
+                "value": "rocketlms",
+                "text": true,
+                "headers": false,
+                "cookies": false,
+                "code": false
+            }
+        ]
     }
 ]

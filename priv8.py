@@ -31,28 +31,28 @@ def findPluginTheme(url, response):
         plugins = re.findall(r'/wp-content/plugins/(.*?)/', response)
         plugins = list(dict.fromkeys(plugins))
         for plugin in plugins:
-            open(f'cms_plugins.txt', 'a').write(f'[{plugin}] {url}\n')
+            open(f'cms/cms_plugins.txt', 'a').write(f'[{plugin}] {url}\n')
     except:pass
         
     try:
         themes = re.findall(r'/wp-content/themes/(.*?)/', response)
         themes = list(dict.fromkeys(themes))
         for theme in themes:
-            open(f'cms_themes.txt', 'a').write(f'[{theme}] {url}\n')
+            open(f'cms/cms_themes.txt', 'a').write(f'[{theme}] {url}\n')
     except:pass
     
     try:
         options = re.findall(r'/index.php?option=(.*?)&', response)
         options = list(dict.fromkeys(options))
         for option in options:
-            open(f'cms_options.txt', 'a').write(f'[{option}] {url}\n')
+            open(f'cms/cms_options.txt', 'a').write(f'[{option}] {url}\n')
     except:pass
     
     try:
         components = re.findall(r'components/(.*?)/', response)
         components = list(dict.fromkeys(components))
         for component in components:
-            open(f'cms_components.txt', 'a').write(f'[{component}] {url}\n')
+            open(f'cms/cms_components.txt', 'a').write(f'[{component}] {url}\n')
     except:pass
     
 def exploit(url):
@@ -86,7 +86,7 @@ def exploit(url):
                 
                 if flagText == True:
                     if flagValue in check.text:
-                        open(output, 'a').write(url +'\n')
+                        open(f'cms/{output}', 'a').write(url +'\n')
                         
                         if name == 'Wordpress' or name == 'Joomla':
                             findPluginTheme(url, check.text)
@@ -98,21 +98,21 @@ def exploit(url):
                 
                 if flagCode == True:
                     if flagValue in check.status_code:
-                        open(output, 'a').write(url +'\n')
+                        open(f'cms/{output}', 'a').write(url +'\n')
                         return True
                     else:pass
                 else:pass
                 
                 if flagCookies == True:
                     if flagValue in check.cookies:
-                        open(output, 'a').write(url +'\n')
+                        open(f'cms/{output}', 'a').write(url +'\n')
                         return True
                     else:pass
                 else:pass
                 
                 if flagHeaders == True:
                     if flagValue in check.headers:
-                        open(output, 'a').write(url +'\n')
+                        open(f'cms/{output}', 'a').write(url +'\n')
                         return True
                     else:pass
                 else:pass
@@ -120,14 +120,14 @@ def exploit(url):
         
         # Consist Response
         if ".php?" in check.text:
-            open('cms_foundparams.txt', 'a').write(url +'\n')
+            open('cms/cms_foundparams.txt', 'a').write(url +'\n')
         else:pass
             
         if "Index of" in check.text:
-            open('cms_indexof.txt', 'a').write(url +'\n')
+            open('cms/cms_indexof.txt', 'a').write(url +'\n')
         else:pass
             
-        open('cms_other.txt', 'a').write(url +'\n')
+        open('cms/cms_other.txt', 'a').write(url +'\n')
     except Exception as err:
         pass
         
